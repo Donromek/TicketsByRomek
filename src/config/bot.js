@@ -24,7 +24,7 @@ export const botConfig = {
     activities: [
       {
         name: "BotByRomek", // required by Discord API, not shown in the client
-        state: "stalking",     // this is what people actually see
+        state: "https://www.youtube.com/watch?v=ha87eOeu5b4&list=RDha87eOeu5b4&start_radio=1",     // this is what people actually see
         type: 2,               // Custom
       },
     ],
