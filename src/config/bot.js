@@ -23,9 +23,9 @@ export const botConfig = {
     // 5 = Competing
     activities: [
       {
-        name: "Custom Status", // required by Discord API, not shown in the client
+        name: "BotByRomek", // required by Discord API, not shown in the client
         state: "stalking",     // this is what people actually see
-        type: 4,               // Custom
+        type: 2,               // Custom
       },
     ],
   },
@@ -90,53 +90,53 @@ export const botConfig = {
   // EMBED COLORS & BRANDING
   // =========================
   // IMPORTANT: This is the SINGLE SOURCE OF TRUTH for all bot colors
-  embeds: {
+embeds: {
     colors: {
-      // Main brand colors.
-      primary: "#336699",
-      secondary: "#2F3136",
+      // Główne kolory marki dopasowane do awataru (Ciemna zieleń i głęboki grafit)
+      primary: "#1b3322",      // Ciemna, leśna zieleń idealnie pasująca do tła z liśćmi
+      secondary: "#1a1c1e",    // Bardzo ciemny, nowoczesny grafit pasujący do ciemnego trybu Discorda
 
-      // Standard status colors for success/error/warning/info messages.
-      success: "#57F287",
-      error: "#ED4245",
-      warning: "#FEE75C",
-      info: "#3498DB",
+      // Standardowe kolory statusów (podkręcone pod jaskrawą zieleń z awataru)
+      success: "#23a55a",      // Jaskrawa zieleń, dokładnie taka jak kropka statusu na zdjęciu
+      error: "#da373c",        // Wyrazista czerwień pasująca do mrocznego klimatu
+      warning: "#f1c40f",
+      info: "#4ca64c",         // Zielonkawy odcień zamiast standardowego niebieskiego
 
-      // Neutral utility colors.
-      light: "#FFFFFF",
-      dark: "#202225",
-      gray: "#99AAB5",
+      // Neutralne kolory użytkowe
+      light: "#ffffff",        // Czysta biel (jak świecący napis OG SZAK)
+      dark: "#111214",         // Głęboka czerń tła
+      gray: "#727d8a",
 
-      // Discord-style palette shortcuts.
+      // Skróty palety Discorda
       blurple: "#5865F2",
-      green: "#57F287",
-      yellow: "#FEE75C",
-      fuchsia: "#EB459E",
-      red: "#ED4245",
+      green: "#23a55a",
+      yellow: "#f1c40f",
+      fuchsia: "#eb459e",
+      red: "#da373c",
       black: "#000000",
 
-      // Feature-specific colors.
+      // Funkcje specyficzne (Giveaway, Tickety itd. utrzymane w zielonej i ciemnej stylistyce)
       giveaway: {
-        active: "#57F287",
-        ended: "#ED4245",
+        active: "#23a55a",
+        ended: "#da373c",
       },
       ticket: {
-        open: "#57F287",
-        claimed: "#FAA61A",
-        closed: "#ED4245",
-        pending: "#99AAB5",
+        open: "#23a55a",
+        claimed: "#faa61a",
+        closed: "#da373c",
+        pending: "#727d8a",
       },
-      economy: "#F1C40F",
-      birthday: "#E91E63",
-      moderation: "#9B59B6",
+      economy: "#2ecc71",      // Zielona ekonomia zamiast złotej (bardziej pasuje do całości)
+      birthday: "#e91e63",
+      moderation: "#2f4f4f",   // Ciemny, wojskowy odcień zieleni dla moderacji
 
-      // Ticket priority color mapping.
+      // Kolory priorytetów ticketów
       priority: {
-        none: "#95A5A6",
-        low: "#3498db",
-        medium: "#2ecc71",
-        high: "#f1c40f",
-        urgent: "#e74c3c",
+        none: "#727d8a",
+        low: "#52796f",        // Stonowana zieleń
+        medium: "#354f52",     // Głęboka zieleń morska
+        high: "#2f3e46",       // Bardzo ciemny miks szarego i zieleni
+        urgent: "#da373c",     // Alarmowa czerwień
       },
     },
     footer: {
