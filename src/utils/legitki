@@ -1,0 +1,67 @@
+const { Client, GatewayIntentBits, EmbedBuilder, SlashCommandBuilder, REST, Routes } = require('discord.js');
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+// Rejestracja komendy Slash
+const commands = [
+    new SlashCommandBuilder()
+        .setName('legitcheck')
+        .setDescription('Wysyła potwierdzenie udanej transakcji / wydania moda')
+        .addUserOption(option => option.setName('klient').setDescription('Oznaczenie klienta').setRequired(true))
+        .addStringOption(option => option.setName('przedmiot').setDescription('Co przekazano/kupiono (np. Mod na Lifesteal)').setRequired(true))
+        .addStringOption(option => option.setName('platnosc').setDescription('Forma płatności lub "Subskrypcja YT"').setRequired(true))
+        .addStringOption(option => option.setName('numer').setDescription('Numer Legit Checka (np. 120)').setRequired(true))
+];
+
+client.on('ready', async () => {
+    console.log(`😈 Bot ${client.user.tag} jest gotowy!`);
+    
+    // Automatyczna rejestracja komend globalnie
+    const rest = new REST({ version: '10' }).setToken('TWÓJ_TOKEN_BOTA');
+    try {
+        await rest.put(
+            Routes.applicationCommands(client.user.id),
+            { body: commands },
+        );
+        console.log('✅ Pomyślnie zarejestrowano komendę /legitcheck!');
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isChatInputCommand()) return;
+
+    if (interaction.commandName === 'legitcheck') {
+        const klient = interaction.options.getUser('klient');
+        const przedmiot = interaction.options.getString('przedmiot');
+        const platnosc = interaction.options.getString('platnosc');
+        const numer = interaction.options.getString('numer');
+
+        // Tworzenie stylizowanego embeda d1ablika
+        const embed = new EmbedBuilder()
+            .setColor('#FF0000') // Ognisty czerwony kolor
+            .setTitle(`✅ D1ABLIK SHOP × LEGIT CHECK #${numer}`)
+            .setDescription(`🤝 **Pomyślnie zrealizowano kolejną wymianę/zamówienie!** (#${numer} LC)\n\u200B`)
+            .addFields(
+                { name: '👤 Klient', value: `${klient} (\`${klient.username}\`)`, inline: false },
+                { name: '🛡 Realizator', value: `${interaction.user}`, inline: false },
+                { name: '\u200B', value: '\u200B', inline: false }, // Odstęp
+                { name: '📦 Przedmiot / Mod', value: `\`${przedmiot}\``, inline: false },
+                { name: '💳 Metoda / Forma', value: `\`${platnosc}\``, inline: false }
+            )
+            .setFooter({ 
+                text: `D1ABLIK STORE • 2026 • LC #${numer}`, 
+                iconURL: client.user.displayAvatarURL() 
+            })
+            .setTimestamp();
+
+        // Wysłanie wiadomości na kanał
+        await interaction.reply({ 
+            content: `🔥 *Dzięki za skorzystanie z usług d1ablika!* **Daj znać w komentarzu/opinii!**`, 
+            embeds: [embed] 
+        });
+    }
+});
+
+client.login('TWÓJ_TOKEN_BOTA');
